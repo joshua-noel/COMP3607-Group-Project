@@ -1,0 +1,98 @@
+Attribute | Type | Purpose | 
+passportNumber | String | The passenger’s passport number | 
+flightNo | String | The passenger’s flight number | 
+firstName | String | The passenger’s first name | 
+lastName | String | The passenger’s last name | 
+numLuggage | int | The number of pieces of luggages that the 
+passenger checks in for the flight | 
+cabinClass | Char | Represents the cabin class that the passenger 
+belongs to on the flight. Possible values:  ‘F', 'B', 
+'P', 'E'? | 
+Method Signature | Return Type | Purpose | 
+Passenger (String passportNumber, 
+String firstName, String lastName, 
+String flightNo)? |  | Constructor. Initialises the state of a Passenger 
+object. The numLuggage and cabinClass variables 
+are set randomly using the appropriate methods in 
+the class.  | 
+assignRandomCabinClass( ) | void | Sets the cabinClass variable to a random cabin 
+class value :  ‘F', 'B', 'P', 'E' | 
+toString( ) | String | Returns a String representation of a Passenger 
+object. See format below? | 
+Attribute | Type | Purpose | 
+owner | Passenger | The Passenger who owns/checks in the luggage. | 
+luggageSlipIDCounter | int | A class variable that starts at 1 and increments by 1 
+for each new LuggageSlip object created. | 
+Attribute | Type | Purpose | 
+luggageSlipID | String | A unique identifier for the LuggageSlip, produced 
+using Passenger’s flight number, last name and the 
+luggageSlipIDCounter. Example below | 
+label | String | A string variable for recording any additional details 
+on the luggage slip. | 
+Method Signature | Return Type | Purpose | 
+LuggageSlip (Passenger p,  Flight f) |  | Constructor. Initialises all state using the input 
+parameters, and sets the label to an empty String. | 
+LuggageSlip (Passenger p,  Flight f, 
+String label) |  | Overloaded constructor. Initialises all state using 
+the input parameters (including label). | 
+hasOwner (String passportNumber) | boolean | Return true if the owner of the LuggageSlip has the 
+supplied passportNumber, false otherwise. | 
+toString( ) | String | Returns a String representation of the LuggageSlip 
+object. See format below. | 
+Attribute | Type | Purpose | 
+slips | ArrayList<LuggageSlip> | Stores multiple LuggageSlip objects. | 
+Method Signature | Return Type | Purpose | 
+LuggageManifest ( ) |  | Constructor. Initialises the slips collection. | 
+addLuggage(Passenger p, Flight f) | String | Adds one or more new LuggageSlip objects to the 
+slips collection based on the number of pieces of 
+luggage that a Passenger has. This method checks 
+the number of allowed pieces based on the 
+Passenger’s cabin class and calculates the cost of 
+excess luggage. The excess luggage cost is then 
+added as a label on all luggage slips for the 
+Passenger. ?
+The method returns the output indicated below*.  | 
+getExcessLuggageCost( int 
+numPieces, int numAllowedPieces) | double | Calculates and returns the total cost of adding 
+excess luggage based on the number of allowed 
+pieces. Every excess piece of luggage costs 
+$35.00. | 
+getExcessLuggageCostByPassenger(
+String passportNumber) | String | Returns the total cost of excess luggage (if any) on 
+the manifest for a Passenger with a given passport 
+number or “No Cost” otherwise. | 
+toString( ) | String | Returns a String representation of the aggregated 
+state of a LuggageManifest by traversing and 
+returning the String representation of each 
+LuggageSlip (if present).  | 
+Attribute | Type | Purpose | 
+flightNo | String | Six character code for a Flight | 
+destination | String | The airport code for the Flight’s arrival | 
+origin | String | The airport code for the Flight’s departure | 
+flightDate | LocalDateTime | The date and time of the Flight | 
+manifest | LuggageManifest | The LuggageManifest for the Flight that stores all of 
+the LuggageSlips created for checked-in luggage | 
+Method Signature | Return Type | Purpose | 
+Flight (String flightNo, String 
+destination, String origin, 
+LocalDateTime flightDate) |  | Constructor. Initialises the state variables, with the 
+supplied parameters, as applicable, and creates a 
+new LuggageManifest object | 
+checkInLuggage(Passenger p) | String | Validates whether a Passenger can check in 
+luggage for the flight (same flight number as the 
+Passenger’s).If this is true, the method adds the 
+Passenger’s luggage to the flight using the 
+addLuggage(..) method and returns the String 
+outcome. If the Passenger’s flight number does not 
+match the Flight, then the message “Invalid flight” 
+is returned.? | 
+printLuggageManifest( ) | String | Returns a String representation of the manifest | 
+getAllowedLuggage( char 
+cabinClass) | int | A class method that returns the number of allowed 
+pieces of luggage for a given cabin class, after 
+which a cost is incurred.?
+‘F’: 3 pieces?
+‘B': 2 pieces?
+'P': 1 piece?
+‘E': 0 pieces? | 
+toString( ) | String | Returns a String representation of the Flight. | 

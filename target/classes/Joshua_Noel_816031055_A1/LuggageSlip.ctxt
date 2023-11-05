@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=LuggageSlip
+comment1.params=p\ f
+comment1.target=LuggageSlip(Passenger,\ Flight)
+comment2.params=p\ f\ label
+comment2.target=LuggageSlip(Passenger,\ Flight,\ java.lang.String)
+comment3.params=passportNumber
+comment3.target=boolean\ hasOwner(java.lang.String)
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment5.params=
+comment5.target=Passenger\ getOwner()
+comment6.params=
+comment6.target=int\ getLuggageSlipIDCounter()
+comment7.params=
+comment7.target=java.lang.String\ getLuggageSlipID()
+comment8.params=
+comment8.target=java.lang.String\ getLabel()
+numComments=9
