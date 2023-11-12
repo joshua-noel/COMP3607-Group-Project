@@ -1,5 +1,9 @@
 package comp3607_group_project;
 
+import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import java.lang.Class;
 import java.lang.reflect.Method;
 import java.lang.AssertionError;
