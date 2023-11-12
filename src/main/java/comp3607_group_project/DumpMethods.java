@@ -34,7 +34,6 @@ public class DumpMethods {
                 System.out.println(publicfieldlist.getName());
 
             }
-
             System.out.println("");
             for (int i=0; i<m.length;i++){
                 Method methlist = m[i];
