@@ -1,27 +1,36 @@
 package comp3607_group_project;
 
-import static org.junit.Assert.*;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 import java.lang.Class;
 import java.lang.reflect.Method;
-import java.lang.AssertionError;
 
 public class Testing{
 
     private Class<?> c;
 
+    public static void main (String[] args) throws ClassNotFoundException{
+        Testing t=new Testing();
+        t.setup();
+        t.testMethodList();
+
+
+    }
 
     public void setup() throws ClassNotFoundException{
-        c= Class.forName("comp3607_group_project.Joshua_Noel_816031055_A1.Flight");
+        System.out.println("Here");
+        c= Class.forName("comp3607_group_project.DumpMethods");
+        
     }
     @Test
     public void testMethodList(){
         Method[] m = c.getDeclaredMethods();
-        assertNotNull(m);
+        Assertions.assertNotNull(m);
+    }
 
-
+    @Test
+    public void testMett(){
+        Method[] m = c.getDeclaredMethods();
+        Assertions.assertNotNull(m);
     }
 
 

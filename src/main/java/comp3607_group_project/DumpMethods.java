@@ -16,7 +16,7 @@ public class DumpMethods {
         try {
             // Class<?> c= Class.forName("comp3607_group_project.DumpMethods");
             // Class<?> c= Class.forName(System.getProperty("user.dir") + "\\demo\\src\\main\\resources\\comp3607_group_project.Joshua_Noel_816031055_A1.Flight");
-            Class<?> c= Class.forName("comp3607_group_project.Joshua_Noel_816031055_A1.Flight");
+            Class<?> c= Class.forName("comp3607_group_project.DumpMethods");
             Method m[]= c.getDeclaredMethods();
             Field privatef[] = c.getDeclaredFields();
             Field publicf[] = c.getFields();
