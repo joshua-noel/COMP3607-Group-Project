@@ -1,7 +1,7 @@
 package comp3607_group_project;
 
 public class ProcessPdfCommand implements Command{
-    FileHandler handler = new FileHandler();
+    private FileHandler handler = new FileHandler();
     private String folder;
 
     public ProcessPdfCommand(String folder) {
@@ -11,6 +11,7 @@ public class ProcessPdfCommand implements Command{
 
     public void execute() {
         handler.getRubicText(folder);
+        handler.parseRubricText(folder);
 
     }
 }
