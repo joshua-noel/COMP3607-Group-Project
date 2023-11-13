@@ -11,6 +11,7 @@ public class ProcessFolderCommand implements Command {
 
     public void execute() {
         handler.unzip(folder);
+        handler.appendFiles(folder);
     }
     
 }
