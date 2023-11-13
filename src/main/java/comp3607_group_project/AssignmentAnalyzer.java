@@ -41,14 +41,14 @@ public class AssignmentAnalyzer {
         return attrsDict;
     }
 
-    public ArrayList<String> getConstructors(Class<?> c, String folder) {
+    public ArrayList<String> getConstructors(Class<?> c) {
         ArrayList<String> constructors = new ArrayList<String>();
 
         try {
             Constructor<?> cons[] = c.getConstructors();
             
             for (int i = 0; i < cons.length; i++) {
-                String signature = cons[i].getName().replaceAll(("comp3607_group_project." + folder + "."), "") + "(";
+                String signature = cons[i].getName().replaceAll((c.getPackageName() + "."), "") + "(";
                 Class<?> parameters[] = cons[i].getParameterTypes();
 
                  //gets method name and parameters then rebuilds method signature
