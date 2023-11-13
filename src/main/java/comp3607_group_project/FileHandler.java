@@ -10,6 +10,10 @@ import com.spire.pdf.utilities.PdfTableExtractor;
 
 import java.io.*;
 import java.util.List;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
 
@@ -85,7 +89,7 @@ public class FileHandler {
                 return file.getCanonicalPath();
 
             } catch (IOException e) {
-                System.out.println("Error finding assignment pdf\n");
+                System.out.println("Error finding file\n");
                 e.printStackTrace();
             }
 			
@@ -130,11 +134,105 @@ public class FileHandler {
         fw.flush();
         fw.close();
 
-    } catch (IOException e) {
-        e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
 
     }
 
-}
+    public void parseRubricText(String folder) {
+        // Read text from file
+        BufferedReader reader;
+        StringBuilder stringBuilder = new StringBuilder();
+
+		try {
+			reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\demo\\src\\main\\java\\comp3607_group_project\\" + folder + "\\pdfText.txt"));
+			String line = reader.readLine();
+
+			while (line != null) {
+				stringBuilder.append(line);
+				line = reader.readLine();
+			}
+
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+        String inputData = stringBuilder.toString();
+        StringBuilder firstTable = new StringBuilder();
+        StringBuilder otherTables = new StringBuilder();
+        
+        boolean flag = false;
+        for(char c : inputData.toCharArray()) {
+            if(c != 'A' && flag == false){
+                firstTable.append(c);
+            } else {
+                otherTables.append(c);
+                flag = true;
+            }
+        }
+        //Remove special characters
+        String strippedData1 = firstTable.toString().replaceAll("\\|  \\|", "|").replaceAll("\r", "").replaceAll("\n", "").replaceAll(" (\\w),", ",").replaceAll(" (\\w)\\)", ")").replaceAll("\\|\\s+", "|");
+        String strippedData2 = otherTables.toString().replaceAll(",\\s+", ",").replaceAll("\\,  ", ",").replaceAll("\\b(\\w+)\\s+\\w+\\b", "$1").replaceAll("\\( ","(").replaceAll(" \\)",")").replaceAll(" \\(", "(").replaceAll("\\?", "").replaceAll("\r", "").replaceAll("\n", "").replaceAll(" (\\w),", ",").replaceAll(" (\\w)\\)", ")").replaceAll("\\|\\s+", "|");
+        String strippedData = strippedData1 + strippedData2;
+        
+        // Insert special char every third |
+        StringBuilder processedData = new StringBuilder();
+        int pipeCount = 0;
+        for (char c : strippedData.toCharArray()) {
+            if (c == '|') {
+                pipeCount++;
+                if (pipeCount % 4 == 0) {
+                    processedData.append(c);
+                    processedData.append("\n");
+                } else {
+                    processedData.append(c);
+                }
+            } else {
+                processedData.append(c);
+            }
+        }
+
+        String pdfText = processedData.toString(); 
+
+        //Split string by the lines
+        String[] lines = pdfText.split("\n");
+
+        StringBuilder result = new StringBuilder();
+        boolean insideMethod = false;
+
+        for (String line : lines){
+            // Check if the line contains "Method Signature"
+            if (line.contains("Attribute")) {
+                insideMethod = true;
+            }
+
+            if (!insideMethod) {
+                // remove all the 
+                line = line.replaceAll("\\s*\\|", " ");
+            } else {
+                //Checks for third "|"
+                int thirdPipeIndex = line.indexOf("|", line.indexOf("|") + 1);
+                thirdPipeIndex = line.indexOf("|", thirdPipeIndex + 1);
+
+                //Checks if third"|" was found and appens all the data before it"
+                line = (thirdPipeIndex != -1) ? line.substring(0, thirdPipeIndex + 1) : line;
+                line = line.replaceAll("\\s*\\|", " ");
+            }
+
+            result.append(line).append("\n");
+        }
+
+        Path path = Paths.get(System.getProperty("user.dir") + "\\demo\\src\\main\\java\\comp3607_group_project\\" + folder + "\\formattedData.txt");
+        //Write to text file
+        try {
+
+            Files.writeString(path, result.toString(),StandardCharsets.UTF_8);
+        } catch (IOException ex) {
+            System.out.print("Invalid Path");
+        }
+    }    
     
 }
