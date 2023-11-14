@@ -1,6 +1,9 @@
 package comp3607_group_project;
 
-import org.junit.jupiter.api.*;
+import org.junit.Assert;
+
+import org.junit.*;
+
 import java.lang.Class;
 import java.lang.reflect.Method;
 
@@ -24,13 +27,13 @@ public class Testing{
     @Test
     public void testMethodList(){
         Method[] m = c.getDeclaredMethods();
-        Assertions.assertNotNull(m);
+        Assert.assertNotNull(m);
     }
 
     @Test
     public void testMett(){
         Method[] m = c.getDeclaredMethods();
-        Assertions.assertNotNull(m);
+        Assert.assertNotNull(m);
     }
 
 

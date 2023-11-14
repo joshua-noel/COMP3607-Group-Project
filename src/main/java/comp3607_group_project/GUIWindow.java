@@ -1,3 +1,6 @@
+package comp3607_group_project;
+
+
 import javax.swing.*;
 import java.awt.*;
 
