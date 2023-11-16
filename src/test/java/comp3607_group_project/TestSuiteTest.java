@@ -16,7 +16,7 @@ public class TestSuiteTest {
         // Assert the expected result
         assertEquals(17, testSuite.getAttrMarks());
     }
-// testing
+
     @Test
     public void testMarkMethods() {
         // Create a TestSuite instance with a folder containing test classes
