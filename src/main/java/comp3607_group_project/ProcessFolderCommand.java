@@ -1,5 +1,7 @@
 package comp3607_group_project;
 
+ 
+
 public class ProcessFolderCommand implements Command {
     FileHandler handler = new FileHandler();
     private String folder;
