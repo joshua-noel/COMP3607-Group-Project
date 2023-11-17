@@ -135,7 +135,7 @@ public class AssignmentAnalyzer {
     //get reuqired methods and attributes for entire assignment
     public ArrayList<Triplet<String, String, Integer>> extractReqAttributes(String folder) {
         ArrayList<Triplet<String, String, Integer>> attributes = new ArrayList<Triplet<String, String, Integer>>();
-        File file = new File(System.getProperty("user.dir") + "\\demo\\src\\main\\java\\comp3607_group_project\\" + folder + "\\formattedData.txt");
+        File file = new File(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder + "\\formattedData.txt");
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(file.getCanonicalPath()));
@@ -163,7 +163,7 @@ public class AssignmentAnalyzer {
 
     public ArrayList<Triplet<String, String, Integer>> extractReqMethods(String folder) {
         ArrayList<Triplet<String, String, Integer>> methods = new ArrayList<Triplet<String, String, Integer>>();
-        File file = new File(System.getProperty("user.dir") + "\\demo\\src\\main\\java\\comp3607_group_project\\" + folder + "\\formattedData.txt");
+        File file = new File(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder + "\\formattedData.txt");
         Pattern pattern = Pattern.compile("[A-Za-z0-9]+\\([^)]*\\)", Pattern.CASE_INSENSITIVE);
 
         try {
