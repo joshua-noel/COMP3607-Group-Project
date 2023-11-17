@@ -8,7 +8,7 @@ public class TestSuiteTest {
     @Test
     public void testMarkAttributes() {
         // Create a TestSuite instance with a folder containing test classes
-        TestSuite testSuite = new TestSuite("comp3607_group_project");
+        TestSuite testSuite = new TestSuite("Joshua_Noel_816031055_A1");
 
         // Call the method you want to test
         testSuite.markAttributes();
@@ -20,7 +20,7 @@ public class TestSuiteTest {
     @Test
     public void testMarkMethods() {
         // Create a TestSuite instance with a folder containing test classes
-        TestSuite testSuite = new TestSuite("comp3607_group_project");
+        TestSuite testSuite = new TestSuite("Joshua_Noel_816031055_A1");
 
         // Call the method you want to test
         testSuite.markMethods();
@@ -32,7 +32,7 @@ public class TestSuiteTest {
     @Test
     public void testMarkConstructors() {
         // Create a TestSuite instance with a folder containing test classes
-        TestSuite testSuite = new TestSuite("comp3607_group_project");
+        TestSuite testSuite = new TestSuite("Joshua_Noel_816031055_A1");
 
         // Call the method you want to test
         testSuite.markConstructors();
@@ -44,7 +44,7 @@ public class TestSuiteTest {
     @Test
     public void testComputeTotalMarks() {
         // Create a TestSuite instance with a folder containing test classes
-        TestSuite testSuite = new TestSuite("comp3607_group_project");
+        TestSuite testSuite = new TestSuite("Joshua_Noel_816031055_A1");
 
         // Call the method you want to test
         testSuite.computeTotalMarks();
