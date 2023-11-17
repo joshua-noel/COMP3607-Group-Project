@@ -22,7 +22,7 @@ public class AssignmentAnalyzer {
     //get all class instances from assignment folder
     public ArrayList<Class<?>> getInstances(String folder) {
         ArrayList<Class<?>> classInstances = new ArrayList<Class<?>>();
-        File dir = new File(System.getProperty("user.dir") + "\\demo\\src\\main\\java\\comp3607_group_project\\" + folder); //looks for java files in the extracted zip folder
+        File dir = new File(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder); //looks for java files in the extracted zip folder
 		String[] extensions = new String[] { "java" };
 
         List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, true); //list of files with java extension in current directory
