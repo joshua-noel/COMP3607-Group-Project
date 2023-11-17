@@ -20,8 +20,8 @@ import org.apache.commons.io.FileUtils;
 public class FileHandler {
 
     public void unzip(String folder) {
-        String folderPath = System.getProperty("user.dir") + "\\demo\\src\\main\\resources\\" + folder + ".zip";
-        String destFolder = System.getProperty("user.dir") + "\\demo\\src\\main\\java\\comp3607_group_project\\"; //extracts to the area with all other program files
+        String folderPath = System.getProperty("user.dir") + "\\src\\main\\resources\\" + folder + ".zip";
+        String destFolder = System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\"; //extracts to the area with all other program files
 
         try {
             ZipFile zipFile = new ZipFile(folderPath);
@@ -35,7 +35,7 @@ public class FileHandler {
     }
 
     public void appendFiles(String folder) {
-        File dir = new File(System.getProperty("user.dir") + "\\demo\\src\\main\\java\\comp3607_group_project\\" + folder); //looks for java files in the extracted zip folder
+        File dir = new File(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder); //looks for java files in the extracted zip folder
 		String[] extensions = new String[] { "java" };
 
         List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, true); //list of files with java extension in current directory
@@ -79,7 +79,7 @@ public class FileHandler {
     }
 
     private String getPdfPath(String folder) { //helper function
-        File dir = new File(System.getProperty("user.dir") + "\\demo\\src\\main\\java\\comp3607_group_project\\" + folder); //looks for pdfs in the extracted zip folder
+        File dir = new File(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder); //looks for pdfs in the extracted zip folder
 		String[] extensions = new String[] { "pdf" };
 
         List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, true); //list of files with pdf extension in current directory
@@ -129,7 +129,7 @@ public class FileHandler {
 
     //Write data into a .txt document
     try {
-        FileWriter fw = new FileWriter(System.getProperty("user.dir") + "\\demo\\src\\main\\java\\comp3607_group_project\\" + folder + "\\pdfText.txt");
+        FileWriter fw = new FileWriter(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder + "\\pdfText.txt");
         fw.write(builder.toString());
         fw.flush();
         fw.close();
@@ -147,7 +147,7 @@ public class FileHandler {
         StringBuilder stringBuilder = new StringBuilder();
 
 		try {
-			reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\demo\\src\\main\\java\\comp3607_group_project\\" + folder + "\\pdfText.txt"));
+			reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder + "\\pdfText.txt"));
 			String line = reader.readLine();
 
 			while (line != null) {
@@ -225,7 +225,7 @@ public class FileHandler {
             result.append(line).append("\n");
         }
 
-        Path path = Paths.get(System.getProperty("user.dir") + "\\demo\\src\\main\\java\\comp3607_group_project\\" + folder + "\\formattedData.txt");
+        Path path = Paths.get(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder + "\\formattedData.txt");
         //Write to text file
         try {
 
