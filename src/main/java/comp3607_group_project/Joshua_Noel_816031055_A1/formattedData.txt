@@ -1,0 +1,48 @@
+Class Design Marks Program Marks 
+Passenger 16 Compiles 5 
+LuggageSlip 14 Runs (LuggageManagementSystem) 10 
+LuggageManifest 20 Passes JUnit Tests 14 
+Flight 16 Has clean code 5 
+Total 66 Total 34 
+Attribute Type MARKS 
+passportNumber String 1 
+flightNo String 1 
+firstName String 1 
+lastName String 1 
+numLuggage int 1 
+cabinClass char 1 
+Method Return MARKS 
+Passenger(String,String,String,String)  5 
+assignRandomCabinClass() void 2 
+Method Return MARKS 
+toString() String 3 
+Attribute Type MARKS 
+owner Passenger 1 
+luggageSlipIDCounter int 1 
+luggageSlipID String 1 
+label String 1 
+Method Return MARKS 
+LuggageSlip(Passenger,Flight)  3 
+LuggageSlip(Passenger,Flight,String)  3 
+hasOwner(String) boolean 2 
+toString() String 2 
+Attribute Type MARKS 
+slips ArrayList<LuggageSlip> 2 
+Method Return MARKS 
+LuggageManifest()  1 
+addLuggage(Passenger,Flight) String 6 
+getExcessLuggageCost(int,int) double 3 
+getExcessLuggageCostByPassenger(String) String 5 
+toString() String 3 
+Attribute Type MARKS 
+flightNo String 1 
+destination String 1 
+origin String 1 
+flightDate LocalDateTime 1 
+manifest LuggageManifest 1 
+Method Return MARKS 
+Flight(String,String,String,LocalDateTime)  2 
+checkInLuggage(Passenger) String 5 
+printLuggageManifest() String 1 
+getAllowedLuggage(char) int 2 
+toString() String 1 

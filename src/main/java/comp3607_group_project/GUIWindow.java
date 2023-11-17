@@ -3,7 +3,19 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GUIWindow {
-    public static void main(String[] args) {
+    private JButton ProcessFolderbtn;
+    private JButton ProcessMarkingpdfbtn;
+    private JButton Reportbtn;
+    private JButton Helpbtn;
+    private JTextField textField;
+    private JTextArea feedback;
+
+
+    public GUIWindow(){
+        initComponents();
+    }
+
+    public void initComponents(){
         // Create a new JFrame
         JFrame frame = new JFrame("Takes in the folder name to mark");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -13,17 +25,23 @@ public class GUIWindow {
         JPanel panel = new JPanel(new FlowLayout());
 
         // Create a label and text field for the folder name
-        JTextField textField = new JTextField("Enter the name of the folder");
+        textField = new JTextField("Enter the name of the folder");
         textField.setPreferredSize(new Dimension(300, 20));
 
         // Create the three buttons
-        JButton ProcessFolderbtn = new JButton("Process Folder");
-        JButton ProcessMarkingpdfbtn = new JButton("Process the Marking PDF");
-        JButton Reportbtn = new JButton("Generate Report");
-        JButton Helpbtn = new JButton("Help");
+        ProcessFolderbtn = new JButton("Process Folder");
+        ProcessFolderbtn.addActionListener(new ProcessFolderListener(this));
+
+        ProcessMarkingpdfbtn = new JButton("Process the Marking PDF");
+        ProcessMarkingpdfbtn.addActionListener(new ProcessMarkingpdfListener(this));
+
+        Reportbtn = new JButton("Generate Report");
+        Reportbtn.addActionListener(new GenerateReportListener(this));
+
+        Helpbtn = new JButton("Help");
 
         // Add a JTextArea for feedback
-        JTextArea feedback = new JTextArea();
+        feedback = new JTextArea();
         JScrollPane scrollPane = new JScrollPane(feedback);
         scrollPane.setPreferredSize(new Dimension(500, 100));
 
@@ -44,5 +62,41 @@ public class GUIWindow {
 
         // Display the window
         frame.setVisible(true);
+    }
+    public void processfolder(){
+        ProcessFolderCommand processFolder = new ProcessFolderCommand("Joshua_Noel_816031055_A1");
+        processFolder.execute();
+        feedback.setText("");
+        feedback.setText("hello worldfolder");
+
+    }
+    public void processpdf(){
+        ProcessPdfCommand processPdf = new ProcessPdfCommand(textField.getText());
+        processPdf.execute();
+        feedback.setText("");
+        feedback.setText("hello worldfolder");
+    }
+    public void processMarkingpdf(){
+        ProcessPdfCommand processPdf = new ProcessPdfCommand(textField.getText());
+        processPdf.execute();
+
+        feedback.setText("");
+        feedback.setText("hello world from marking pdf btn");
+    }
+    public void generateReport(){
+        ProcessAssignmentCommand processAssignment = new ProcessAssignmentCommand(textField.getText());
+        processAssignment.execute();
+
+        TestSuite tester = new TestSuite(textField.getText());
+        tester.markAttributes();
+        tester.markConstructors();
+        tester.markMethods();
+        tester.computeTotalMarks();
+        System.out.println(tester.getAttrMarks());
+        System.out.println(tester.getConstructorMarks());
+        System.out.println(tester.getMethodMarks());
+        System.out.println(tester.getTotalMarks());
+        feedback.setText("");
+        feedback.setText("hello world from generate report btn");
     }
 }
