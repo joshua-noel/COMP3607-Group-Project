@@ -1,6 +1,6 @@
 package comp3607_group_project;
 
- 
+import java.io.IOException;
 
 public class ProcessAssignmentCommand implements Command {
     private TestSuite tester;
@@ -11,9 +11,26 @@ public class ProcessAssignmentCommand implements Command {
     }
 
     public void execute() {
-        tester.markAttributes();
-        tester.markMethods();
-        tester.markConstructors();
+        try {
+            tester.markAttributes();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            tester.markMethods();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            tester.markConstructors();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            tester.generatePDF();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         tester.computeTotalMarks();
         System.out.println(tester.getTotalMarks());     
 
