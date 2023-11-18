@@ -13,26 +13,13 @@ public class ProcessAssignmentCommand implements Command {
     public void execute() {
         try {
             tester.markAttributes();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
             tester.markMethods();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
             tester.markConstructors();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
             tester.generatePDF();
+
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        tester.computeTotalMarks();
-        System.out.println(tester.getTotalMarks());     
+        } 
 
     }
     
