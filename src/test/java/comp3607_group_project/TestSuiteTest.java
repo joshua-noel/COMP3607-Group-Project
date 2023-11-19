@@ -3,6 +3,8 @@ package comp3607_group_project;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
+
 public class TestSuiteTest {
 
     @Test
@@ -11,7 +13,11 @@ public class TestSuiteTest {
         TestSuite testSuite = new TestSuite("Joshua_Noel_816031055_A1");
 
         // Call the method you want to test
-        testSuite.markAttributes();
+        try {
+            testSuite.markAttributes();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // Assert the expected result
         assertEquals(17, testSuite.getAttrMarks());
@@ -23,7 +29,11 @@ public class TestSuiteTest {
         TestSuite testSuite = new TestSuite("Joshua_Noel_816031055_A1");
 
         // Call the method you want to test
-        testSuite.markMethods();
+        try {
+            testSuite.markMethods();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // Assert the expected result
         assertEquals(35, testSuite.getMethodMarks());
@@ -35,7 +45,11 @@ public class TestSuiteTest {
         TestSuite testSuite = new TestSuite("Joshua_Noel_816031055_A1");
 
         // Call the method you want to test
-        testSuite.markConstructors();
+        try {
+            testSuite.markConstructors();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // Assert the expected result
         assertEquals(14, testSuite.getConstructorMarks());

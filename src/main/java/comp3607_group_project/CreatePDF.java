@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -38,9 +39,9 @@ public class CreatePDF {
         File fa = new File("MarkedAttributes.pdf");
         File fm = new File("MarkedMethods.pdf");
         File fc = new File("MarkedConstructors.pdf");
-        PDDocument f1 = PDDocument.load(fa);
-        PDDocument f2 = PDDocument.load(fm);
-        PDDocument f3 = PDDocument.load(fc);
+        PDDocument f1 = Loader.loadPDF(fa);
+        PDDocument f2 = Loader.loadPDF(fm);
+        PDDocument f3 = Loader.loadPDF(fc);
 
         for (int i = 0; i < f1.getNumberOfPages(); i++) {
             newDoc.addPage(f1.getPage(i));
