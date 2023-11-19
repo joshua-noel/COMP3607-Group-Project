@@ -33,7 +33,7 @@ public class CreatePDF {
         file.close();
     }
 
-    public void mergePDFs() throws IOException {
+    public void mergePDFs(String folder) throws IOException {
         PDDocument newDoc = new PDDocument();
         File fa = new File("MarkedAttributes.pdf");
         File fm = new File("MarkedMethods.pdf");
@@ -51,8 +51,8 @@ public class CreatePDF {
         for (int i = 0; i < f3.getNumberOfPages(); i++) {
             newDoc.addPage(f3.getPage(i));
         }
-        newDoc.save("Marked Assignment.pdf");
-        newDoc.close();
 
+        newDoc.save(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder + "\\Marked Assignment.pdf");
+        newDoc.close();
     }
 }
