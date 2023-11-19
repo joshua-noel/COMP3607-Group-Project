@@ -70,12 +70,7 @@ public class GUIWindow {
         feedback.setText("Folder Processed");
 
     }
-    public void processpdf(){
-        ProcessPdfCommand processPdf = new ProcessPdfCommand(textField.getText());
-        processPdf.execute();
-        feedback.setText("");
-        feedback.setText("");
-    }
+
     public void processMarkingpdf(){
         ProcessPdfCommand processPdf = new ProcessPdfCommand(textField.getText());
         processPdf.execute();
