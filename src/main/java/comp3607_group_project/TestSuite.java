@@ -108,7 +108,6 @@ public class TestSuite {
                 }
 
                 if ((!found) && (!matcher1.matches()) && (!matcher2.matches())) { //only triggers if method not found and method is not a getter/setter
-                    System.out.println(key);
                     c.add(key + " not found, no marks awarded");
 
                 }                
