@@ -4,16 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
-/**
- * The CreatePDF class provides functionality for creating and manipulating PDF documents.
- * It includes methods for writing text to a PDF and merging multiple PDFs into a single document.
- */
 public class CreatePDF {
 
     public CreatePDF() {
@@ -27,8 +22,7 @@ public class CreatePDF {
         file.addPage(page);
         contentStream.beginText();
         contentStream.setFont(PDType1Font.COURIER_BOLD, 12);
-        contentStream.setLeading(14.5f);
-        contentStream.newLineAtOffset(25, page.getBBox().getHeight() - 25);
+        contentStream.newLineAtOffset(25, page.getTrimBox().getHeight() - 25);
         for (String s : text) {
             contentStream.showText(s);
             contentStream.newLineAtOffset(0, -25);
@@ -41,12 +35,12 @@ public class CreatePDF {
 
     public void mergePDFs() throws IOException {
         PDDocument newDoc = new PDDocument();
-        File fileAttributes = new File("MarkedAttributes.pdf");
-        File fileMethods = new File("MarkedMethods.pdf");
-        File fileConstructors = new File("MarkedConstructors.pdf");
-        PDDocument f1 = Loader.loadPDF(fileAttributes);
-        PDDocument f2 = Loader.loadPDF(fileMethods);
-        PDDocument f3 = Loader.loadPDF(fileConstructors);
+        File fa = new File("MarkedAttributes.pdf");
+        File fm = new File("MarkedMethods.pdf");
+        File fc = new File("MarkedConstructors.pdf");
+        PDDocument f1 = PDDocument.load(fa);
+        PDDocument f2 = PDDocument.load(fm);
+        PDDocument f3 = PDDocument.load(fc);
 
         for (int i = 0; i < f1.getNumberOfPages(); i++) {
             newDoc.addPage(f1.getPage(i));
