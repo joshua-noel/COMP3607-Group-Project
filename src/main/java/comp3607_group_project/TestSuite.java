@@ -167,7 +167,7 @@ public class TestSuite {
 
     public void generatePDF() throws IOException {
         CreatePDF f = new CreatePDF();
-        f.mergePDFs();
+        f.mergePDFs(folder);
 
     }
     //accessors
