@@ -18,10 +18,12 @@ import org.javatuples.Triplet;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The AssignmentAnalyzer class extracts the methods, constructors, and attributes 
+ * from Java classes and files for a given assignment.
+ */
 public class AssignmentAnalyzer {  
 
-    //get methods, constructos and attributes for a given java file
-    //get all class instances from assignment folder
     public ArrayList<Class<?>> getInstances(String folder) {
         ArrayList<Class<?>> classInstances = new ArrayList<Class<?>>();
         File dir = new File(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder); //looks for java files in the extracted zip folder
@@ -45,14 +47,15 @@ public class AssignmentAnalyzer {
     }
 
     public Dictionary<String, String> getPrivateAttrs(Class<?> c) {
-        Dictionary<String, String> attrsDict = new Hashtable<>();
+        
+	Dictionary<String, String> attributeDictionary = new Hashtable<>();
 
         try {
             Field privateAttrs[] = c.getDeclaredFields(); //private attrs
 
             for (int i = 0; i < privateAttrs.length; i++) {
-                Field attr = privateAttrs[i];
-                attrsDict.put(attr.getName(), attr.getType().getSimpleName()); //form: Attribute Name, Atrribute Type
+                Field attribute = privateAttrs[i];
+                attributeDictionary.put(attribute.getName(), attribute.getType().getSimpleName()); //form: Attribute Name, Atrribute Type
 
             }
         
@@ -60,7 +63,7 @@ public class AssignmentAnalyzer {
             e.printStackTrace();
         }
 
-        return attrsDict;
+        return attributeDictionary;
     }
 
     public ArrayList<String> getConstructors(Class<?> c) {
@@ -134,7 +137,19 @@ public class AssignmentAnalyzer {
         return methodsDict;
     }
 
-    //get reuqired methods and attributes for entire assignment
+    /**
+    * Extracts required attributes from a formatted data file.
+    *
+    * This method reads a formatted data file, filters out method entries,
+    * and extracts required attributes along with their associated information.
+    * The data is expected to be in the format: "AttributeName AttributeType Marks".
+    * Lines with "MARKS" in the third position are considered as table headers and are skipped.
+    *
+    * @param folder The folder containing the formatted data file.
+    * @return An ArrayList of Triplets representing the extracted attributes.
+    *         Each Triplet contains the AttributeName, AttributeType, and Marks.
+    * @throws IOException If an I/O error occurs while reading the file.
+    */
     public ArrayList<Triplet<String, String, Integer>> extractReqAttributes(String folder) {
         ArrayList<Triplet<String, String, Integer>> attributes = new ArrayList<Triplet<String, String, Integer>>();
         File file = new File(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder + "\\formattedData.txt");
@@ -162,7 +177,21 @@ public class AssignmentAnalyzer {
 
         return attributes;
     }    
-
+    /**
+    * Extracts required methods from a formatted data file.
+    *
+    * This method reads a formatted data file, filters out attribute entries,
+    * and extracts required methods along with their associated information.
+    * The data is expected to be in the format:
+    * - For normal methods: "MethodName ReturnType Marks"
+    * - For constructors: "ConstructorName Marks"
+    * Lines with "MARKS" in the third position are considered as table headers and are skipped.
+    *
+    * @param folder The folder containing the formatted data file.
+    * @return An ArrayList of Triplets representing the extracted methods.
+    *         Each Triplet contains the MethodName, ReturnType (or null for constructors), and Marks.
+    * @throws IOException If an I/O error occurs while reading the file.
+    */
     public ArrayList<Triplet<String, String, Integer>> extractReqMethods(String folder) {
         ArrayList<Triplet<String, String, Integer>> methods = new ArrayList<Triplet<String, String, Integer>>();
         File file = new File(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder + "\\formattedData.txt");
