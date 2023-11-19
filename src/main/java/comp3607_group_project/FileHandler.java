@@ -17,6 +17,11 @@ import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
 
+/**
+ * The FileHandler class provides methods for handling files, including unzipping,
+ * appending package names to Java files, extracting text from PDFs, and parsing
+ * rubric text from formatted data.
+ */
 public class FileHandler {
 
     public void unzip(String folder) {
