@@ -3,6 +3,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+* Represents a GUI window for interacting with the application.
+* Allows users to input folder names, process folders, marking PDFs, generate reports, and access help.
+*/
 public class GUIWindow {
     private JButton ProcessFolderbtn;
     private JButton ProcessMarkingpdfbtn;
@@ -11,11 +15,13 @@ public class GUIWindow {
     private JTextField textField;
     private JTextArea feedback;
 
-
     public GUIWindow(){
         initComponents();
     }
 
+    /**
+     * Creates and configures the GUI components, including buttons, text fields, and feedback area.
+     */
     public void initComponents(){
         // Create a new JFrame
         JFrame frame = new JFrame("Takes in the folder name to mark");
@@ -78,6 +84,10 @@ public class GUIWindow {
         feedback.setText("");
         feedback.setText("PDF Processed");
     }
+
+    /**
+     * Generates a report for the entered folder, executing the associated command and providing feedback.
+     */
     public void generateReport(){
         ProcessAssignmentCommand processAssignment = new ProcessAssignmentCommand(textField.getText());
         processAssignment.execute();
