@@ -1,6 +1,7 @@
 package comp3607_group_project;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class GUIWindow {
     private JButton ProcessFolderbtn;
@@ -64,39 +65,40 @@ public class GUIWindow {
         frame.setVisible(true);
     }
     public void processfolder(){
-        ProcessFolderCommand processFolder = new ProcessFolderCommand("Joshua_Noel_816031055_A1");
+        ProcessFolderCommand processFolder = new ProcessFolderCommand(textField.getText());
         processFolder.execute();
-        feedback.setText("");
-        feedback.setText("hello worldfolder");
+        feedback.setText("Folder Processed");
 
     }
     public void processpdf(){
         ProcessPdfCommand processPdf = new ProcessPdfCommand(textField.getText());
         processPdf.execute();
         feedback.setText("");
-        feedback.setText("hello worldfolder");
+        feedback.setText("");
     }
     public void processMarkingpdf(){
         ProcessPdfCommand processPdf = new ProcessPdfCommand(textField.getText());
         processPdf.execute();
 
         feedback.setText("");
-        feedback.setText("hello world from marking pdf btn");
+        feedback.setText("PDF Processed");
     }
     public void generateReport(){
         ProcessAssignmentCommand processAssignment = new ProcessAssignmentCommand(textField.getText());
         processAssignment.execute();
 
         TestSuite tester = new TestSuite(textField.getText());
-        tester.markAttributes();
-        tester.markConstructors();
-        tester.markMethods();
-        tester.computeTotalMarks();
-        System.out.println(tester.getAttrMarks());
-        System.out.println(tester.getConstructorMarks());
-        System.out.println(tester.getMethodMarks());
-        System.out.println(tester.getTotalMarks());
+        try {
+            tester.markAttributes();
+            tester.markConstructors();
+            tester.markMethods();
+
+        } catch (Exception e) {
+            feedback.setText("Error Generating Report");
+            e.printStackTrace();
+        }
+
         feedback.setText("");
-        feedback.setText("hello world from generate report btn");
+        feedback.setText("Report Generated");
     }
 }
