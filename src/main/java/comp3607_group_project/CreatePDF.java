@@ -23,7 +23,8 @@ public class CreatePDF {
         file.addPage(page);
         contentStream.beginText();
         contentStream.setFont(PDType1Font.COURIER_BOLD, 12);
-        contentStream.newLineAtOffset(25, page.getTrimBox().getHeight() - 25);
+        contentStream.setLeading(14.5f);
+        contentStream.newLineAtOffset(25, page.getBBox().getHeight() - 25);
         for (String s : text) {
             contentStream.showText(s);
             contentStream.newLineAtOffset(0, -25);
