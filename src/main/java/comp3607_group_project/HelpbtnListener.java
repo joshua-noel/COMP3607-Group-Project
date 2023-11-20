@@ -14,7 +14,7 @@ public class HelpbtnListener implements ActionListener{
     public HelpbtnListener(GUIWindow s){
         this.s= s;
     }
-    private void actionPerformed(ActionEvent e){
+    public void actionPerformed(ActionEvent e){
         s.help();
     }
 }
