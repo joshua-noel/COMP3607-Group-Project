@@ -36,24 +36,24 @@ public class TestSuite {
         c.add("Attribute Marks");
 
         CreatePDF file = new CreatePDF();
-        for (int i = 0; i < classInstances.size(); i++) {
-            Dictionary<String, String> classMethods = analyzer.getPrivateAttrs(classInstances.get(i)); 
+        for (int i = 0; i < classInstances.size(); i++) { //iterate over all classes
+            Dictionary<String, String> classMethods = analyzer.getPrivateAttrs(classInstances.get(i)); //load methods
 
             Enumeration<String> k = classMethods.keys();
             c.add("Class: " + classInstances.get(i).getSimpleName());
 
 
-            while (k.hasMoreElements()) { 
+            while (k.hasMoreElements()) { //iterate across all attributes in class
                 String key = k.nextElement();
                 Boolean found = false;
 
                 //look for attribute in list of required attributes
                 for (int j = 0; j < requiredAttrs.size(); j++) {
-                    if ((key.equals(requiredAttrs.get(j).getValue0())) && ((classMethods.get(key)).equals(requiredAttrs.get(j).getValue1()))) { 
+                    if ((key.equals(requiredAttrs.get(j).getValue0())) && ((classMethods.get(key)).equals(requiredAttrs.get(j).getValue1()))) { //checks if method name and type matches required
                         attrMarks = attrMarks + requiredAttrs.get(j).getValue2();
                         c.add(key + " found and correct, marks awarded: " + requiredAttrs.get(j).getValue2());
                         found = true;
-                        j = requiredAttrs.size(); 
+                        j = requiredAttrs.size(); //jump out of loop
 
                     }
 
@@ -97,17 +97,17 @@ public class TestSuite {
 
                 //look for method in list of required methods and constructors
                 for (int j = 0; j < requiredMethods.size(); j++) {
-                    if ((key.equals(requiredMethods.get(j).getValue0())) && ((classMethods.get(key)).equals(requiredMethods.get(j).getValue1()))) { 
+                    if ((key.equals(requiredMethods.get(j).getValue0())) && ((classMethods.get(key)).equals(requiredMethods.get(j).getValue1()))) { //checks if method name and type matches required
                         methodMarks = methodMarks + requiredMethods.get(j).getValue2();
                         c.add(key + " found and correct, marks awarded: " + requiredMethods.get(j).getValue2());
                         found = true;
-                        j = requiredMethods.size(); 
+                        j = requiredMethods.size(); //jump out of loop
 
                     }
 
                 }
 
-                if ((!found) && (!matcher1.matches()) && (!matcher2.matches())) { 
+                if ((!found) && (!matcher1.matches()) && (!matcher2.matches())) { //only triggers if method not found and method is not a getter/setter
                     c.add(key + " not found, no marks awarded");
 
                 }                
@@ -126,10 +126,10 @@ public class TestSuite {
 
         CreatePDF file = new CreatePDF();
         for (int i = 0; i < classInstances.size(); i++) { //iterate over all classes
-            ArrayList<String> constructors = analyzer.getConstructors(classInstances.get(i)); 
+            ArrayList<String> constructors = analyzer.getConstructors(classInstances.get(i)); //load constructors
             c.add("Class: " + classInstances.get(i).getSimpleName());
 
-            for (int j = 0; j < constructors.size(); j++) {
+            for (int j = 0; j < constructors.size(); j++) { //iterate across all class constructors
                 String curr = constructors.get(j);
                 Boolean found = false;
 
@@ -153,6 +153,7 @@ public class TestSuite {
 
         }
         c.add("Marks for Constructors: " + constructorMarks);
+        //temp fix to get total for assignment in final report
         computeTotalMarks();
         c.add("Total Marks: " + getTotalMarks());
         file.writeText("MarkedConstructors.pdf", c);
@@ -169,8 +170,7 @@ public class TestSuite {
         f.mergePDFs(folder);
 
     }
-   
- //accessors
+    //accessors
     public int getAttrMarks() { return attrMarks; }
 
     public int getMethodMarks() { return methodMarks; }
