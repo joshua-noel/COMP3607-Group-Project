@@ -114,5 +114,5 @@ public class GUIWindow {
                 "NOTE:\r\n" + //
                 "Some steps may throw errors due to the previous step not being completed, if a substantial amount of time has been given between steps and errors are still thrown, backtrack and try again.");
     }
-    }
+    
 }
