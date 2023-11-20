@@ -109,7 +109,7 @@ public class GUIWindow {
                 "Press 'Process the Marking PDF' and allow the program sometime to process the request.\r\n" + //
                 "\r\n" + //
                 "Step 4:\r\n" + //
-                "Press 'Generate Report' and allow the program sometime to process the request. The report PDF will be located in (path/to/report).\r\n" + //
+                "Press 'Generate Report' and allow the program sometime to process the request. The report PDF will be located in (located in the project's main folder).\r\n" + //
                 "\r\n" + //
                 "NOTE:\r\n" + //
                 "Some steps may throw errors due to the previous step not being completed, if a substantial amount of time has been given between steps and errors are still thrown, backtrack and try again.");
