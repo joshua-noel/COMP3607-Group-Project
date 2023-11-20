@@ -26,3 +26,7 @@ $ cd "path\to\clone\COMP3607-Group-Project\src\main\java\comp3607_group_project"
 2. What format should rubric be in?
    
 - The rubric should be a PDF
+
+3. I got compilation errors now what?
+
+- Ensure all dependencies are downloaded from 'pom.xml'
