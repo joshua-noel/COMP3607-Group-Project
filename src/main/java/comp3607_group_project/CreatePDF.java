@@ -9,6 +9,9 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
+/**
+* CreatePDF class responsible for creating PDF documents and merging multiple PDFs.
+*/
 public class CreatePDF {
 
     public CreatePDF() {
@@ -35,12 +38,12 @@ public class CreatePDF {
 
     public void mergePDFs(String folder) throws IOException {
         PDDocument newDoc = new PDDocument();
-        File fa = new File("MarkedAttributes.pdf");
-        File fm = new File("MarkedMethods.pdf");
-        File fc = new File("MarkedConstructors.pdf");
-        PDDocument f1 = PDDocument.load(fa);
-        PDDocument f2 = PDDocument.load(fm);
-        PDDocument f3 = PDDocument.load(fc);
+        File fileAttributes = new File("MarkedAttributes.pdf");
+        File fileMethods = new File("MarkedMethods.pdf");
+        File fileConstructors = new File("MarkedConstructors.pdf");
+        PDDocument f1 = PDDocument.load(fileAttributes);
+        PDDocument f2 = PDDocument.load(fileMethods);
+        PDDocument f3 = PDDocument.load(fileConstructors);
 
         for (int i = 0; i < f1.getNumberOfPages(); i++) {
             newDoc.addPage(f1.getPage(i));
