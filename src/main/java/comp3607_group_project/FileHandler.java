@@ -24,6 +24,11 @@ import org.apache.commons.io.FileUtils;
  */
 public class FileHandler {
 
+    /**
+     * Unzips a compressed folder to a specified destination folder.
+     *
+     * @param folder The name of the compressed folder to be unzipped.
+     */
     public void unzip(String folder) {
         String folderPath = System.getProperty("user.dir") + "\\src\\main\\resources\\" + folder + ".zip";
         String destFolder = System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\";
@@ -39,6 +44,11 @@ public class FileHandler {
 
     }
 
+    /**
+     * Appends package names to Java files in a specified folder.
+     *
+     * @param folder The folder containing Java files.
+     */
     public void appendFiles(String folder) {
         File dir = new File(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder); 
 		String[] extensions = new String[] { "java" };
@@ -82,6 +92,12 @@ public class FileHandler {
 
     }
 
+    /**
+     * Gets the path of the PDF file in a specified folder.
+     *
+     * @param folder The folder containing PDF files.
+     * @return The canonical path of the first PDF file found.
+     */
     private String getPdfPath(String folder) { 
         File dir = new File(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder); 
 		String[] extensions = new String[] { "pdf" };
@@ -102,6 +118,11 @@ public class FileHandler {
         return "";
     }
 
+     /**
+     * Extracts rubric text from a PDF file and writes it to a text file.
+     *
+     * @param folder The folder containing PDF files.
+     */
     public void getRubicText(String folder) {
         PdfDocument pdf = new PdfDocument(getPdfPath(folder));
         StringBuilder builder = new StringBuilder();
@@ -141,6 +162,11 @@ public class FileHandler {
 
     }
 
+    /**
+     * Parses rubric text from a formatted data file and writes it to another file.
+     *
+     * @param folder The folder containing the formatted data file.
+     */
     public void parseRubricText(String folder) {
         BufferedReader reader;
         StringBuilder stringBuilder = new StringBuilder();
