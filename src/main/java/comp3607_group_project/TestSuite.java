@@ -23,6 +23,11 @@ public class TestSuite {
     private ArrayList<Triplet<String, String, Integer>> requiredAttrs;
     private ArrayList<Triplet<String, String, Integer>> requiredMethods;
 
+     /**
+     * Constructs a TestSuite for the specified folder.
+     *
+     * @param folder The name of the folder associated with the assignment.
+     */
     public TestSuite(String folder) {
         this.folder = folder;
         classInstances = analyzer.getInstances(folder);
@@ -31,6 +36,11 @@ public class TestSuite {
 
     }
 
+    /**
+     * Marks attributes in the assignment and generates a PDF report for attributes.
+     *
+     * @throws IOException If an I/O error occurs.
+     */
     public void markAttributes() throws IOException{
         ArrayList<String> c = new ArrayList<>();
         c.add("Attribute Marks");
@@ -74,6 +84,11 @@ public class TestSuite {
 
     }
 
+    /**
+     * Marks methods in the assignment and generates a PDF report for methods.
+     *
+     * @throws IOException If an I/O error occurs.
+     */
     public void markMethods()throws IOException {
         //regex patterns for getters and setters
         Pattern pattern1 = Pattern.compile("get[A-Za-z0-9]+\\(\\)", Pattern.CASE_INSENSITIVE);
@@ -120,6 +135,11 @@ public class TestSuite {
 
     }
 
+    /**
+     * Marks constructors in the assignment and generates a PDF report for constructors.
+     *
+     * @throws IOException If an I/O error occurs.
+     */
     public void markConstructors() throws IOException{
         ArrayList<String> c = new ArrayList<>();
         c.add("Constructor Marks");
@@ -160,11 +180,19 @@ public class TestSuite {
 
     }
 
+    /**
+     * Computes the total marks by summing individual marks for attributes, methods, and constructors.
+     */
     public void computeTotalMarks() {
         totalMarks = attrMarks + methodMarks + constructorMarks;
 
     }
 
+    /**
+     * Generates a PDF report for the entire assignment, including marks for attributes, methods, and constructors.
+     *
+     * @throws IOException If an I/O error occurs.
+     */
     public void generatePDF() throws IOException {
         CreatePDF f = new CreatePDF();
         f.mergePDFs(folder);
