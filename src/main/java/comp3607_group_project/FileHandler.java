@@ -26,7 +26,7 @@ public class FileHandler {
 
     public void unzip(String folder) {
         String folderPath = System.getProperty("user.dir") + "\\src\\main\\resources\\" + folder + ".zip";
-        String destFolder = System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\"; //extracts to the area with all other program files
+        String destFolder = System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\";
 
         try {
             ZipFile zipFile = new ZipFile(folderPath);
@@ -40,13 +40,13 @@ public class FileHandler {
     }
 
     public void appendFiles(String folder) {
-        File dir = new File(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder); //looks for java files in the extracted zip folder
+        File dir = new File(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder); 
 		String[] extensions = new String[] { "java" };
 
-        List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, true); //list of files with java extension in current directory
+        List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, true); 
 
 		for (File file : files) {
-            StringBuilder builder = new StringBuilder(); //new string builder obj for each file
+            StringBuilder builder = new StringBuilder(); 
             String contents = "";
 
             //get all file content
@@ -55,11 +55,11 @@ public class FileHandler {
                 String line;
 
                 while ((line = br.readLine()) != null) {
-                    builder.append(line).append("\n"); //current line content
+                    builder.append(line).append("\n"); 
 
                 }
 
-                contents = builder.toString(); //final product
+                contents = builder.toString();
                 br.close();
 
             } catch (IOException e) {
@@ -68,7 +68,6 @@ public class FileHandler {
 
             try {
                 BufferedWriter bw = new BufferedWriter(new FileWriter(file.getCanonicalPath(), false));
-                //write the package name to the top of each file
                 bw.write("package comp3607_group_project." + folder + ";");
                 bw.newLine();
                 //write all file contents
@@ -83,13 +82,13 @@ public class FileHandler {
 
     }
 
-    private String getPdfPath(String folder) { //helper function
-        File dir = new File(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder); //looks for pdfs in the extracted zip folder
+    private String getPdfPath(String folder) { 
+        File dir = new File(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder); 
 		String[] extensions = new String[] { "pdf" };
 
-        List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, true); //list of files with pdf extension in current directory
+        List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, true); 
 
-		for (File file : files) { //should only have 1 file
+		for (File file : files) { 
             try {
                 return file.getCanonicalPath();
 
@@ -108,20 +107,16 @@ public class FileHandler {
         StringBuilder builder = new StringBuilder();
         PdfTableExtractor extractor = new PdfTableExtractor(pdf);
         
-        //Loop through the pages in the PDF
+
+	    
         for (int pageIndex = 0; pageIndex < pdf.getPages().getCount(); pageIndex++) {
-        //Extract tables from the current page into a PdfTable array
         PdfTable[] tableLists = extractor.extractTable(pageIndex);
 
-        //If any tables are found
+        
         if (tableLists != null && tableLists.length > 0) {
-            //Loop through the tables in the array
             for (PdfTable table : tableLists) {
-                //Loop through the rows in the current table
                 for (int i = 0; i < table.getRowCount(); i++) {
-                    //Loop through the columns in the current table
                     for (int j = 0; j < table.getColumnCount(); j++) {
-                        //Extract data from the current table cell and append to the StringBuilder
                         String text = table.getText(i, j);
                         builder.append(text + " | ");
 
@@ -132,7 +127,7 @@ public class FileHandler {
         }
     }
 
-    //Write data into a .txt document
+ 
     try {
         FileWriter fw = new FileWriter(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder + "\\pdfText.txt");
         fw.write(builder.toString());
@@ -147,7 +142,6 @@ public class FileHandler {
     }
 
     public void parseRubricText(String folder) {
-        // Read text from file
         BufferedReader reader;
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -178,6 +172,7 @@ public class FileHandler {
                 flag = true;
             }
         }
+	    
         //Remove special characters
         String strippedData1 = firstTable.toString().replaceAll("\\|  \\|", "|").replaceAll("\r", "").replaceAll("\n", "").replaceAll(" (\\w),", ",").replaceAll(" (\\w)\\)", ")").replaceAll("\\|\\s+", "|");
         String strippedData2 = otherTables.toString().replaceAll(",\\s+", ",").replaceAll("\\,  ", ",").replaceAll("\\b(\\w+)\\s+\\w+\\b", "$1").replaceAll("\\( ","(").replaceAll(" \\)",")").replaceAll(" \\(", "(").replaceAll("\\?", "").replaceAll("\r", "").replaceAll("\n", "").replaceAll(" (\\w),", ",").replaceAll(" (\\w)\\)", ")").replaceAll("\\|\\s+", "|");
@@ -202,27 +197,22 @@ public class FileHandler {
 
         String pdfText = processedData.toString(); 
 
-        //Split string by the lines
         String[] lines = pdfText.split("\n");
 
         StringBuilder result = new StringBuilder();
         boolean insideMethod = false;
 
         for (String line : lines){
-            // Check if the line contains "Method Signature"
             if (line.contains("Attribute")) {
                 insideMethod = true;
             }
 
             if (!insideMethod) {
-                // remove all the 
                 line = line.replaceAll("\\s*\\|", " ");
             } else {
-                //Checks for third "|"
                 int thirdPipeIndex = line.indexOf("|", line.indexOf("|") + 1);
                 thirdPipeIndex = line.indexOf("|", thirdPipeIndex + 1);
 
-                //Checks if third"|" was found and appens all the data before it"
                 line = (thirdPipeIndex != -1) ? line.substring(0, thirdPipeIndex + 1) : line;
                 line = line.replaceAll("\\s*\\|", " ");
             }
@@ -231,7 +221,6 @@ public class FileHandler {
         }
 
         Path path = Paths.get(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder + "\\formattedData.txt");
-        //Write to text file
         try {
 
             Files.writeString(path, result.toString(),StandardCharsets.UTF_8);
