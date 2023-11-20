@@ -42,7 +42,8 @@ public class GUIWindow {
         Reportbtn.addActionListener(new GenerateReportListener(this));
 
         Helpbtn = new JButton("Help");
-
+        Helpbtn.addActionListener(new HelpbtnListener(this));
+        
         feedback = new JTextArea();
         JScrollPane scrollPane = new JScrollPane(feedback);
         scrollPane.setPreferredSize(new Dimension(500, 100));
@@ -95,5 +96,23 @@ public class GUIWindow {
 
         feedback.setText("");
         feedback.setText("Report Generated");
+    }
+    public void help(){
+        feedback.setText("");
+        feedback.setText("Step 1:\r\n" + //
+                "An assignment zip file must be placed in the resources folder (src\\main\\resources). This zip file must contain one (1) PDF which is the lecturer/tutor marking rubric.\r\n" + //
+                "\r\n" + //
+                "Step 2:\r\n" + //
+                "Enter the name of the desired assignment zip that you wish to mark and press 'Process Folder' and allow the program sometime to process the request.\r\n" + //
+                "\r\n" + //
+                "Step 3:\r\n" + //
+                "Press 'Process the Marking PDF' and allow the program sometime to process the request.\r\n" + //
+                "\r\n" + //
+                "Step 4:\r\n" + //
+                "Press 'Generate Report' and allow the program sometime to process the request. The report PDF will be located in (path/to/report).\r\n" + //
+                "\r\n" + //
+                "NOTE:\r\n" + //
+                "Some steps may throw errors due to the previous step not being completed, if a substantial amount of time has been given between steps and errors are still thrown, backtrack and try again.");
+    }
     }
 }
