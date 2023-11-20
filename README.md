@@ -30,3 +30,7 @@ $ cd "path\to\clone\COMP3607-Group-Project\src\main\java\comp3607_group_project"
 3. I got compilation errors now what?
 
 - Ensure all dependencies are downloaded from 'pom.xml'
+
+4. Where is my marked assignment report?
+
+- The generated PDF will be placed in the corresponding assignment folder that was marked.
