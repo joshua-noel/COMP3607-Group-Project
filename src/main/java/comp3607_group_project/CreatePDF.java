@@ -14,10 +14,20 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 */
 public class CreatePDF {
 
+    /**
+     * Default constructor for the CreatePDF class.
+     */
     public CreatePDF() {
 
     }
 
+    /**
+     * Writes text to a PDF file.
+     *
+     * @param filename The name of the PDF file to be created.
+     * @param text     An ArrayList of strings representing the text content to be written.
+     * @throws IOException If an I/O error occurs while writing to the PDF file.
+     */
     public void writeText(String filename, ArrayList<String> text) throws IOException {
         PDDocument file = new PDDocument();
         PDPage page = new PDPage();
@@ -36,6 +46,12 @@ public class CreatePDF {
         file.close();
     }
 
+    /**
+     * Merges multiple PDFs into a single PDF document.
+     *
+     * @param folder The folder containing the PDF files to be merged.
+     * @throws IOException If an I/O error occurs while merging the PDFs or saving the new document.
+     */
     public void mergePDFs(String folder) throws IOException {
         PDDocument newDoc = new PDDocument();
         File fileAttributes = new File("MarkedAttributes.pdf");
