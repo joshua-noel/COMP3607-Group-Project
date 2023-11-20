@@ -16,7 +16,7 @@ $ cd "path\to\clone\COMP3607-Group-Project\src\main\java\comp3607_group_project"
 
 4. Place a zipped assignment folder in the resource folder "path\to\clone\COMP3607-Group-Project\src\main\resources".
 
-5. Run 'Main.java'
+5. Run compiled main
 
 ## FAQ
 1. Where should I place the assignment rubric?
