@@ -15,6 +15,9 @@ public class GUIWindow {
     private JTextField textField;
     private JTextArea feedback;
 
+    /**
+     * Initializes the GUI components and sets up the main frame.
+     */
     public GUIWindow(){
         initComponents();
     }
@@ -61,6 +64,10 @@ public class GUIWindow {
 
         frame.setVisible(true);
     }
+
+    /**
+     * Processes the entered folder, executing the associated command and providing feedback.
+     */
     public void processfolder(){
         ProcessFolderCommand processFolder = new ProcessFolderCommand(textField.getText());
         processFolder.execute();
@@ -68,6 +75,9 @@ public class GUIWindow {
 
     }
 
+    /**
+     * Processes the marking PDF for the entered folder, executing the associated command and providing feedback.
+     */
     public void processMarkingpdf(){
         ProcessPdfCommand processPdf = new ProcessPdfCommand(textField.getText());
         processPdf.execute();
@@ -97,6 +107,10 @@ public class GUIWindow {
         feedback.setText("");
         feedback.setText("Report Generated");
     }
+
+    /**
+     * Displays help information in the feedback area.
+     */
     public void help(){
         feedback.setText("");
         feedback.setText("Step 1:\r\n" + //
