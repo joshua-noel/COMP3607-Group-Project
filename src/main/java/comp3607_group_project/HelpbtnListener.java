@@ -7,6 +7,6 @@ public class HelpbtnListener implements ActionListener{
         this.s= s;
     }
     private void actionPerformed(ActionEvent e){
-
+        s.help();
     }
 }
