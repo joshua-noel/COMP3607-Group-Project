@@ -1,9 +1,8 @@
 package comp3607_group_project;
 
-
 /**
- * The Command interface represents an executable command.
- * Classes ProcessAssignmentCommand, ProcessFolderCommand,  implementing this interface should provide
+ * Interface
+ * Classes ProcessAssignmentCommand, ProcessFolderCommand and ProcessPdfCommand implements this interface.
  * functionality through the execute method.
  */
 public interface Command {
