@@ -19,11 +19,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * The AssignmentAnalyzer class extracts the methods, constructors, and attributes 
- * from Java classes and files for a given assignment.
- */
+* The AssignmentAnalyzer class extracts the methods, constructors, and attributes 
+* from Java classes and files for a given assignment.
+*/
 public class AssignmentAnalyzer {  
 
+    /**
+     * Gets instances of classes in a specified folder.
+     *
+     * @param folder The folder containing Java files.
+     * @return An ArrayList of Class objects representing the classes in the folder.
+     */
     public ArrayList<Class<?>> getInstances(String folder) {
         ArrayList<Class<?>> classInstances = new ArrayList<Class<?>>();
         File dir = new File(System.getProperty("user.dir") + "\\src\\main\\java\\comp3607_group_project\\" + folder); //looks for java files in the extracted zip folder
@@ -46,6 +52,12 @@ public class AssignmentAnalyzer {
         return classInstances;
     }
 
+    /**
+     * Gets private attributes of a class.
+     *
+     * @param c The Class object for which to retrieve private attributes.
+     * @return A Dictionary containing private attributes and their types both of type string.
+     */
     public Dictionary<String, String> getPrivateAttrs(Class<?> c) {
         
 	Dictionary<String, String> attributeDictionary = new Hashtable<>();
@@ -66,6 +78,12 @@ public class AssignmentAnalyzer {
         return attributeDictionary;
     }
 
+    /**
+     * Gets constructors of a class.
+     *
+     * @param c The Class object for which to retrieve constructors.
+     * @return An ArrayList of strings representing constructor signatures.
+     */
     public ArrayList<String> getConstructors(Class<?> c) {
         ArrayList<String> constructors = new ArrayList<String>();
 
@@ -101,6 +119,12 @@ public class AssignmentAnalyzer {
         return constructors;
     }
 
+    /**
+     * Gets methods of a class.
+     *
+     * @param c The Class object for which to retrieve methods.
+     * @return A Dictionary containing methods and their return types both of type string.
+     */
     public Dictionary<String, String> getMethods(Class<?> c) {
         Dictionary<String, String> methodsDict = new Hashtable<>();
 
