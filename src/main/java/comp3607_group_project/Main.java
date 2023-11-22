@@ -1,26 +1,17 @@
 package comp3607_group_project;
 
+/**
+ * The Main class serves as the entry point for the application.
+ * It creates an instance of the GUIWindow class to initiate the user interface.
+ */
 public class Main {
+
+     /**
+     * The main method that creates an instance of the GUIWindow class.
+     *
+     * @param args The command-line arguments (not used in this application).
+     */
     public static void main(String[] args) {
         GUIWindow window= new GUIWindow();
-        System.out.println("Running");
-        //ProcessFolderCommand processFolder = new ProcessFolderCommand("Joshua_Noel_816031055_A1");
-        //ProcessPdfCommand processPdf = new ProcessPdfCommand("Joshua_Noel_816031055_A1");
-        //processFolder.execute();
-        //processPdf.execute();
-
-        /*ProcessAssignmentCommand processAssignment = new ProcessAssignmentCommand("Joshua_Noel_816031055_A1");
-        processAssignment.execute();
-
-        TestSuite tester = new TestSuite("Joshua_Noel_816031055_A1");
-        tester.markAttributes();
-        tester.markConstructors();
-        tester.markMethods();
-        tester.computeTotalMarks();
-        System.out.println(tester.getAttrMarks());
-        System.out.println(tester.getConstructorMarks());
-        System.out.println(tester.getMethodMarks());
-        System.out.println(tester.getTotalMarks());
-*/
     }
 }

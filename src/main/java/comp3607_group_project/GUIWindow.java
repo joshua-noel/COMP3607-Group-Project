@@ -3,6 +3,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+* Represents a GUI window for interacting with the application.
+* Allows users to input folder names, process folders, marking PDFs, generate reports, and access help.
+*/
 public class GUIWindow {
     private JButton ProcessFolderbtn;
     private JButton ProcessMarkingpdfbtn;
@@ -11,25 +15,26 @@ public class GUIWindow {
     private JTextField textField;
     private JTextArea feedback;
 
-
+    /**
+     * Initializes the GUI components and sets up the main frame.
+     */
     public GUIWindow(){
         initComponents();
     }
 
+    /**
+     * Creates and configures the GUI components, including buttons, text fields, and feedback area.
+     */
     public void initComponents(){
-        // Create a new JFrame
         JFrame frame = new JFrame("Takes in the folder name to mark");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 300);
 
-        // Create a new JPanel with a FlowLayout
         JPanel panel = new JPanel(new FlowLayout());
 
-        // Create a label and text field for the folder name
         textField = new JTextField("Enter the name of the folder");
         textField.setPreferredSize(new Dimension(300, 20));
 
-        // Create the three buttons
         ProcessFolderbtn = new JButton("Process Folder");
         ProcessFolderbtn.addActionListener(new ProcessFolderListener(this));
 
@@ -40,30 +45,29 @@ public class GUIWindow {
         Reportbtn.addActionListener(new GenerateReportListener(this));
 
         Helpbtn = new JButton("Help");
-
-        // Add a JTextArea for feedback
+        Helpbtn.addActionListener(new HelpbtnListener(this));
+        
         feedback = new JTextArea();
         JScrollPane scrollPane = new JScrollPane(feedback);
         scrollPane.setPreferredSize(new Dimension(500, 100));
 
-        // Add the text field to the panel
         panel.add(textField);
 
-        // Add the buttons to the panel
         panel.add(ProcessFolderbtn);
         panel.add(ProcessMarkingpdfbtn);
         panel.add(Reportbtn);
         panel.add(Helpbtn);
 
-        // Add the feedback area to the panel
         panel.add(scrollPane);
 
-        // Add the panel to the frame
         frame.getContentPane().add(panel, BorderLayout.CENTER);
 
-        // Display the window
         frame.setVisible(true);
     }
+
+    /**
+     * Processes the entered folder, executing the associated command and providing feedback.
+     */
     public void processfolder(){
         ProcessFolderCommand processFolder = new ProcessFolderCommand(textField.getText());
         processFolder.execute();
@@ -71,6 +75,9 @@ public class GUIWindow {
 
     }
 
+    /**
+     * Processes the marking PDF for the entered folder, executing the associated command and providing feedback.
+     */
     public void processMarkingpdf(){
         ProcessPdfCommand processPdf = new ProcessPdfCommand(textField.getText());
         processPdf.execute();
@@ -78,6 +85,10 @@ public class GUIWindow {
         feedback.setText("");
         feedback.setText("PDF Processed");
     }
+
+    /**
+     * Generates a report for the entered folder, executing the associated command and providing feedback.
+     */
     public void generateReport(){
         ProcessAssignmentCommand processAssignment = new ProcessAssignmentCommand(textField.getText());
         processAssignment.execute();
@@ -96,4 +107,26 @@ public class GUIWindow {
         feedback.setText("");
         feedback.setText("Report Generated");
     }
+
+    /**
+     * Displays help information in the feedback area.
+     */
+    public void help(){
+        feedback.setText("");
+        feedback.setText("Step 1:\r\n" + //
+                "An assignment zip file must be placed in the resources folder (src\\main\\resources). This zip file must contain one (1) PDF which is the lecturer/tutor marking rubric.\r\n" + //
+                "\r\n" + //
+                "Step 2:\r\n" + //
+                "Enter the name of the desired assignment zip that you wish to mark and press 'Process Folder' and allow the program sometime to process the request.\r\n" + //
+                "\r\n" + //
+                "Step 3:\r\n" + //
+                "Press 'Process the Marking PDF' and allow the program sometime to process the request.\r\n" + //
+                "\r\n" + //
+                "Step 4:\r\n" + //
+                "Press 'Generate Report' and allow the program sometime to process the request. The report PDF will be located in (located in the project's main folder).\r\n" + //
+                "\r\n" + //
+                "NOTE:\r\n" + //
+                "Some steps may throw errors due to the previous step not being completed, if a substantial amount of time has been given between steps and errors are still thrown, backtrack and try again.");
+    }
+    
 }
